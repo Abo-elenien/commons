@@ -30,9 +30,9 @@ ibmcloud ks clusters
 echo "Running ibmcloud ks cluster config for "$BUILD_CLUSTER""
 csVersion=$(ibmcloud plugin list | grep container-service | awk '{print $2;}')
 if [[ ! "$csVersion" < "1.0.0" ]]; then
-    ibmcloud oc cluster config --cluster ${BUILD_CLUSTER}
+    ibmcloud oc cluster config --cluster ${BUILD_CLUSTER}  --admin 
 else
-    CLUSTER_CONFIG_COMMAND=$(ibmcloud oc cluster config --cluster "$BUILD_CLUSTER" --export)
+    CLUSTER_CONFIG_COMMAND=$(ibmcloud oc cluster config --cluster "$BUILD_CLUSTER"  --admin --export)
     echo "$CLUSTER_CONFIG_COMMAND"
     eval $CLUSTER_CONFIG_COMMAND
 fi
